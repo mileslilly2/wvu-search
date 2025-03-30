@@ -1,0 +1,17 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pkl
+
+# Virtual environment
+.venv/
+
+# FAISS index and metadata
+*.faiss
+*.pkl
+
+# OS metadata
+.DS_Store
+
+# VS Code settings
+.vscode/

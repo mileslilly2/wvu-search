@@ -12,7 +12,7 @@ NAMESPACE = {
     "oai": "http://www.openarchives.org/OAI/2.0/",
     "dc": "http://purl.org/dc/elements/1.1/"
 }
-
+aaaa
 def harvest_records(metadata_prefix="oai_dc", max_records=50):
     url = f"{OAI_ENDPOINT}?verb=ListRecords&metadataPrefix={metadata_prefix}"
     records = []

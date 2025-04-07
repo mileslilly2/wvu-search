@@ -1,5 +1,5 @@
 import streamlit as st
-from search import search_faiss_index
+from app.core.search import search_faiss_index
 
 st.set_page_config(page_title="WVU Semantic Search", page_icon="🔍", layout="wide")
 

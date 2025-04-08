@@ -22,7 +22,8 @@ def search_faiss_index(
     import pickle
 
     # Load model, FAISS index, and metadata
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer("models/all-MiniLM-L6-v2")
+
     index = faiss.read_index(index_path)
 
     with open(metadata_path, "rb") as f:

@@ -27,10 +27,5 @@ setuptools==78.1.0
 sympy==1.13.1
 threadpoolctl==3.6.0
 tokenizers==0.21.1
-# CPU-only PyTorch install line
-torch==2.2.2+cpu --index-url https://download.pytorch.org/whl/cpu
-tqdm==4.67.1
-transformers==4.50.3
-typing_extensions==4.13.0
-urllib3==2.3.0
-streamlit==1.33.0
+
+

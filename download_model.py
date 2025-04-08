@@ -1,17 +1,28 @@
+# guaranteed_model_download.py
 from sentence_transformers import SentenceTransformer
 import os
 
 model_name = "all-MiniLM-L6-v2"
+save_dir = os.path.join("models", model_name)
+os.makedirs(save_dir, exist_ok=True)
+
 model = SentenceTransformer(model_name)
 
-# Save the SentenceTransformer model (this saves Pooling/Normalize)
-model.save("models/all-MiniLM-L6-v2")
+# SentenceTransformer wrapper (pooling, normalization, etc.)
+model.save(save_dir)
 
-# Save the Hugging Face transformer model part too
+# Explicitly save the Hugging Face transformer (this downloads pytorch_model.bin)
 transformer_model = model._first_module().auto_model
+print(transformer_model.config)
+print(transformer_model.state_dict())
+# Save the transformer model
+transformer_model.save_pretrained(save_dir)
+print("Transformer model saved.")
+print(transformer_model)
+# Save the tokenizer
+
+# Explicitly save the tokenizer files
 tokenizer = model.tokenizer
+tokenizer.save_pretrained(save_dir)
 
-transformer_model.save_pretrained("models/all-MiniLM-L6-v2")
-tokenizer.save_pretrained("models/all-MiniLM-L6-v2")
-
-print("✅ Full model saved with config, weights, tokenizer, and pooling layers.")
+print(f"✅ Everything downloaded and saved in: {save_dir}")

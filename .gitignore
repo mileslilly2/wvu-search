@@ -6,9 +6,7 @@ __pycache__/
 # Virtual environment
 .venv/
 
-# FAISS index and metadata
-*.faiss
-*.pkl
+
 
 # OS metadata
 .DS_Store

@@ -4,6 +4,8 @@ import json
 import time
 import os
 import datetime
+from app.core.xml_cleaner import clean_xml_with_log
+
 
 BASE_URL = "https://researchrepository.wvu.edu/do/oai/"
 NAMESPACE = {
@@ -53,11 +55,12 @@ def harvest_for_duration(output_dir="harvested", metadata_prefix="oai_dc", max_m
         while url and time.time() < end_time:
             print(f"📥 Fetching: {url}")
             resp = requests.get(url)
+            cleaned = clean_xml_with_log(resp.text)
             try:
-                root = ET.fromstring(resp.content)
+                root = ET.fromstring(cleaned)
             except ET.ParseError as e:
                 print("❌ XML ParseError — skipping batch:", e)
-                break
+                continue
 
             records = root.findall(".//oai:record", NAMESPACE)
             for rec in records:

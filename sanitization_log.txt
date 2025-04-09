@@ -1,0 +1,13 @@
+Sanitization issues detected:
+- Unescaped ampersands: 15
+- Control characters: 1
+
+Sanitization issues detected:
+- Unescaped ampersands: 57
+
+Sanitization issues detected:
+- Unescaped ampersands: 118
+
+Sanitization issues detected:
+- Unescaped ampersands: 131
+

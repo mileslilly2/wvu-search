@@ -13,3 +13,11 @@ __pycache__/
 
 # VS Code settings
 .vscode/
+
+
+# Ignore harvest logs
+sanitization_log.txt
+
+# Ignore dynamic harvest outputs
+data/wvu/records_*.jsonl
+data/wvu/resumption_token.txt

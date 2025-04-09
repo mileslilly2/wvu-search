@@ -33,7 +33,8 @@ def harvest_for_duration(output_dir="harvested", metadata_prefix="oai_dc", max_m
     start_time = time.time()
     end_time = start_time + max_minutes * 60
     token_file = os.path.join(output_dir, "resumption_token.txt")
-    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now(datetime.UTC).strftime("%Y%m%d_%Hh%Mm%S")
+
     jsonl_path = os.path.join(output_dir, f"records_{timestamp}.jsonl")
 
     # Check if a token exists from a previous session

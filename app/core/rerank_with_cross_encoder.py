@@ -1,5 +1,5 @@
 from sentence_transformers import CrossEncoder
-from app.search import search_faiss_index  # Make sure this works in your project structure
+from app.core.search import search_faiss_index  # Make sure this works in your project structure
 
 def rerank_with_cross_encoder(query, faiss_results, model_name="cross-encoder/ms-marco-MiniLM-L6-v2"):
     """

@@ -21,3 +21,7 @@ sanitization_log.txt
 # Ignore dynamic harvest outputs
 data/wvu/records_*.jsonl
 data/wvu/resumption_token.txt
+# Logs and tokens
+sanitization_log.txt
+
+

@@ -7,8 +7,8 @@ import pickle
 from tqdm import tqdm
 import os
 
-from app.indexer import build_faiss_index
-from app.harvest import harvest_records
+from app.core.indexer import build_faiss_index
+from app.core.harvest import harvest_records
 
 # -------------------------
 # Configurable parameters
@@ -28,5 +28,5 @@ NAMESPACE = {
 
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
-    records = harvest_records(MAX_RECORDS, METADATA_PREFIX)
+    records = harvest_records(METADATA_PREFIX, MAX_RECORDS)
     build_faiss_index(records, index_path="data/wvu_index.faiss", metadata_path="data/wvu_metadata.pkl")

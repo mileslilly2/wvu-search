@@ -1,28 +1,18 @@
-# guaranteed_model_download.py
-from sentence_transformers import SentenceTransformer
+from transformers import AutoModel, AutoTokenizer
 import os
 
-model_name = "all-MiniLM-L6-v2"
-save_dir = os.path.join("models", model_name)
+model_name = "sentence-transformers/all-MiniLM-L6-v2"
+save_dir = os.path.join("models", "all-MiniLM-L6-v2")
 os.makedirs(save_dir, exist_ok=True)
 
-model = SentenceTransformer(model_name)
+# Force Hugging Face to download the .bin PyTorch checkpoint
+model = AutoModel.from_pretrained("models/all-MiniLM-L6-v2", 
+                                  local_files_only=True,
+                                  from_safetensors=True)
 
-# SentenceTransformer wrapper (pooling, normalization, etc.)
-model.save(save_dir)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-# Explicitly save the Hugging Face transformer (this downloads pytorch_model.bin)
-transformer_model = model._first_module().auto_model
-print(transformer_model.config)
-print(transformer_model.state_dict())
-# Save the transformer model
-transformer_model.save_pretrained(save_dir)
-print("Transformer model saved.")
-print(transformer_model)
-# Save the tokenizer
-
-# Explicitly save the tokenizer files
-tokenizer = model.tokenizer
+model.save_pretrained(save_dir)
 tokenizer.save_pretrained(save_dir)
 
-print(f"✅ Everything downloaded and saved in: {save_dir}")
+print(f"✅ PyTorch .bin weights saved in: {save_dir}")

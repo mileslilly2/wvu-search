@@ -12,9 +12,9 @@ NAMESPACE = {
     "oai": "http://www.openarchives.org/OAI/2.0/",
     "dc": "http://purl.org/dc/elements/1.1/"
 }
-aaaa
+
 def harvest_records(metadata_prefix="oai_dc", max_records=50):
-    url = f"{OAI_ENDPOINT}?verb=ListRecords&metadataPrefix={metadata_prefix}"
+    url = f"{BASE_URL}?verb=ListRecords&metadataPrefix={metadata_prefix}"
     records = []
 
     while url and len(records) < max_records:
@@ -63,6 +63,6 @@ def harvest_records(metadata_prefix="oai_dc", max_records=50):
 
 # Example
 if __name__ == "__main__":
-    records = harvest_records(max_records=5000)
+    records = harvest_records(metadata_prefix="oai_dc", max_records=5000)
     #for record in records:
         #print(f"\nTitle: {record['title']}\nBy: {', '.join(record['creators'])}\nLink: {record['link']}\n")

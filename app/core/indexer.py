@@ -1,4 +1,8 @@
-
+from sentence_transformers import SentenceTransformer
+import faiss
+import numpy as np
+import pickle
+import os
 def build_faiss_index(records, index_path="wvu_index.faiss", metadata_path="wvu_metadata.pkl"):
     """
     Builds a FAISS index from a list of metadata records.
@@ -25,7 +29,7 @@ def build_faiss_index(records, index_path="wvu_index.faiss", metadata_path="wvu_
             record["subject"] = []
 
     # Load sentence transformer model
-    model = SentenceTransformer("all-MiniLM-L6-v2")  # 384-dim, lightweight and fast
+    model = SentenceTransformer("models/all-MiniLM-L6-v2")  # 384-dim, lightweight and fast
 
     # Prepare combined text: title + description
     texts = [

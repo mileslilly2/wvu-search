@@ -11,3 +11,27 @@ Sanitization issues detected:
 Sanitization issues detected:
 - Unescaped ampersands: 131
 
+Sanitization issues detected:
+- Unescaped ampersands: 54
+
+Sanitization issues detected:
+- Unescaped ampersands: 72
+
+Sanitization issues detected:
+- Unescaped ampersands: 97
+
+Sanitization issues detected:
+- Unescaped ampersands: 50
+
+Sanitization issues detected:
+- Unescaped ampersands: 33
+
+Sanitization issues detected:
+- Unescaped ampersands: 96
+
+Sanitization issues detected:
+- Unescaped ampersands: 193
+
+Sanitization issues detected:
+- Unescaped ampersands: 251
+

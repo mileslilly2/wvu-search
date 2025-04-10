@@ -1,4 +1,4 @@
-from app.search import search_faiss_index
+from app.core.search import search_faiss_index
 
 def main():
     print("\n🔍 WVU Semantic Search CLI")

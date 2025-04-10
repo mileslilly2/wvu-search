@@ -5,6 +5,7 @@ import faiss
 import numpy as np
 import pickle
 from tqdm import tqdm
+from app.core.xml_cleaner import clean_xml_with_log
 
 
 BASE_URL = "https://researchrepository.wvu.edu/do/oai/"
@@ -20,8 +21,9 @@ def harvest_records(metadata_prefix="oai_dc", max_records=50):
     while url and len(records) < max_records:
         print(f"Fetching: {url}")
         resp = requests.get(url)
+        cleaned = clean_xml_with_log(resp.text)
         try:
-            root = ET.fromstring(resp.content)
+            root = ET.fromstring(cleaned)
         except ET.ParseError as e:
             print("❌ XML ParseError — skipping this batch:", e)
             break  # or `continue` to skip and move on

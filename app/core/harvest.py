@@ -5,7 +5,7 @@ import faiss
 import numpy as np
 import pickle
 from tqdm import tqdm
-from app.core.xml_cleaner import clean_xml_with_log
+from xml_cleaner import clean_xml_with_log
 
 
 BASE_URL = "https://researchrepository.wvu.edu/do/oai/"
@@ -67,4 +67,4 @@ def harvest_records(metadata_prefix="oai_dc", max_records=50):
 if __name__ == "__main__":
     records = harvest_records(metadata_prefix="oai_dc", max_records=5000)
     #for record in records:
-        #print(f"\nTitle: {record['title']}\nBy: {', '.join(record['creators'])}\nLink: {record['link']}\n")
+     #   print(f"\nTitle: {record['title']}\nBy: {', '.join(record['creators'])}\nLink: {record['link']}\n")

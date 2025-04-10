@@ -87,4 +87,4 @@ def harvest_for_duration(output_dir="harvested", metadata_prefix="oai_dc", max_m
 
 
 
-harvest_for_duration(output_dir="data/wvu", max_minutes=15)
+#harvest_for_duration(output_dir="data/wvu", max_minutes=15)

@@ -8,7 +8,8 @@ from tqdm import tqdm
 import os
 
 from app.core.indexer import build_faiss_index
-from app.core.harvest import harvest_records
+from app.core.time_batch_harvest import harvest_for_duration
+
 
 # -------------------------
 # Configurable parameters
@@ -28,5 +29,5 @@ NAMESPACE = {
 
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
-    records = harvest_records(METADATA_PREFIX, MAX_RECORDS)
+    records = harvest_for_duration(output_dir="harvested", metadata_prefix="oai_dc", max_minutes=10)
     build_faiss_index(records, index_path="data/wvu_index.faiss", metadata_path="data/wvu_metadata.pkl")

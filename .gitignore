@@ -25,3 +25,6 @@ data/wvu/resumption_token.txt
 sanitization_log.txt
 
 
+harvested_*.jsonl
+
+

@@ -19,18 +19,29 @@ if __name__ == "__main__":
     # Step 1: Run time-based harvest
     harvest_for_duration(output_dir=OUTPUT_DIR, metadata_prefix="oai_dc", max_minutes=MAX_MINUTES)
 
-    # Step 2: Find latest records_*.jsonl file
-    jsonl_files = sorted(glob.glob(os.path.join(OUTPUT_DIR, "records_*.jsonl")), reverse=True)
+    # Step 2: Find all harvested records_*.jsonl files
+    jsonl_files = sorted(glob.glob(os.path.join(OUTPUT_DIR, "records_*.jsonl")))
+
     if not jsonl_files:
-        print("❌ No harvested records file found.")
+        print("❌ No harvested records files found.")
         exit(1)
 
-    latest_jsonl = jsonl_files[0]
-    print(f"📄 Loading records from: {latest_jsonl}")
+    # Step 3: Load and deduplicate all records across files
+    seen = set()
+    records = []
 
-    # Step 3: Load records into memory
-    with open(latest_jsonl, "r", encoding="utf-8") as f:
-        records = [json.loads(line) for line in f]
+    print(f"📂 Found {len(jsonl_files)} .jsonl files. Deduplicating across all...")
+
+    for file in jsonl_files:
+        with open(file, "r", encoding="utf-8") as f:
+            for line in f:
+                record = json.loads(line)
+                uid = record.get("link") or record.get("title")
+                if uid and uid not in seen:
+                    seen.add(uid)
+                    records.append(record)
+
+    print(f"🧹 Loaded {len(records)} unique records after deduplicating across all batches.")
 
     # Step 4: Build FAISS index
     build_faiss_index(records, index_path=INDEX_OUTPUT, metadata_path=METADATA_OUTPUT)

@@ -11,7 +11,7 @@ from app.core.time_batch_harvest import harvest_for_duration
 OUTPUT_DIR = "harvested"
 INDEX_OUTPUT = "data/wvu_index.faiss"
 METADATA_OUTPUT = "data/wvu_metadata.pkl"
-MAX_MINUTES = 30  # How long to harvest
+MAX_MINUTES = 120 # How long to harvest
 
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
